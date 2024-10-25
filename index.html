@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section Wars</title>
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('Font2.otf') format('opentype');
+        }
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f3f3;
+            background: url('bg2.png');
+            overflow: hidden;
+            position: relative;
+            font-family: 'CustomFont';
+        }
+
+        .word {
+            position: absolute;
+            font-size: 4rem;
+            color:rgb(225, 243, 235);
+            font-family: 'CustomFont';
+            font-weight: bold;
+            opacity: 0;
+        }
+
+        .duties-button {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background-color: #9c0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: sans-serif;
+        }
+        .duties-button:hover {
+            background-color: #fc0a0a;
+        }
+
+        /* For "Section" */
+        .section {
+            left: -200px;
+            animation: slideInLeft 2s forwards, bounceLeft 0.5s 2s forwards;
+            animation-fill-mode: forwards;
+        }
+
+        /* For "War" */
+        .war {
+            right: -200px;
+            animation: slideInRight 2s forwards, bounceRight 0.5s 2s forwards;
+            animation-fill-mode: forwards;
+        }
+
+        /* Thunderbolt image */
+        .thunderbolt {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            width: 100px; /* Adjust size as needed */
+            animation: fadeOutThunderbolt 0.5s 2.5s forwards;
+        }
+
+        @keyframes showThunderbolt {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOutThunderbolt {
+            to {
+                opacity: 0.5; /* Reduce opacity to make it a background */
+                transform: scale(5); /* Scale up to cover the background */
+            }
+        }
+
+        /* Bounce animation for "Section" to bounce slightly to the left */
+        @keyframes bounceLeft {
+            0% { left: 47%; transform: translateX(-100%); }
+            50% { left: 42%; transform: translateX(-90%); }
+            100% { left: 47%; transform: translateX(-100%); }
+        }
+
+        /* Bounce animation for "War" to bounce slightly to the right */
+        @keyframes bounceRight {
+            0% { right: 47%; transform: translateX(100%); }
+            50% { right: 42%; transform: translateX(90%); }
+            100% { right: 47%; transform: translateX(100%); }
+        }
+
+        /* Sliding in from the left (for "Section") */
+        @keyframes slideInLeft {
+            to {
+                left: 47%;
+                transform: translateX(-100%);
+                opacity: 1;
+            }
+        }
+
+        /* Sliding in from the right (for "War") */
+        @keyframes slideInRight {
+            to {
+                right: 47%;
+                transform: translateX(100%);
+                opacity: 1;
+            }
+        }
+
+        /* Final text "Section Wars" fades in and stays centered */
+        .collide {
+            opacity: 0;
+            position: absolute;
+            animation: appear 0.5s 2.5s forwards;
+            font-size: 5rem;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes appear {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Adjust font size for smaller screens */
+        @media (max-width: 768px) {
+            .word {
+                font-size: 2.5rem;
+            }
+            .collide {
+                font-size: 3rem;
+            }
+            .duties-button {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+            .duties-button {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .word {
+                font-size: 2rem;
+            }
+            .collide {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Word elements -->
+    <div class="word section">Section</div>
+    <div class="word war">War</div>
+    <!-- Thunderbolt image (ensure the file is in the same directory or provide a correct path) -->
+    <img src="Gun.png" alt="Thunderbolt" class="thunderbolt">
+    <div class="word collide">Section Wars</div>
+    <a href="duties.html" class="duties-button">Go to Duties</a>
+
+    <script>
+        // Force animation to restart on page reload by removing and re-adding the class
+        window.onload = function() {
+            const section = document.querySelector('.section');
+            const war = document.querySelector('.war');
+            const collide = document.querySelector('.collide');
+            const thunderbolt = document.querySelector('.thunderbolt');
+
+            // Re-trigger animations
+            section.style.display = 'none';
+            war.style.display = 'none';
+            collide.style.display = 'none';
+            thunderbolt.style.display = 'none';
+
+            setTimeout(() => {
+                section.style.display = '';
+                war.style.display = '';
+                collide.style.display = '';
+                thunderbolt.style.display = '';
+            }, 50);
+        };
+
+        // Hide "Section" and "War" after 2.5 seconds
+        setTimeout(() => {
+            document.querySelector('.section').style.display = 'none';
+            document.querySelector('.war').style.display = 'none';
+        }, 2500);
+    </script>
+</body>
+</html>
