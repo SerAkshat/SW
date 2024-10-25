@@ -28,3 +28,8 @@ setTimeout(() => {
     document.querySelector('.section').style.display = 'none';
     document.querySelector('.war').style.display = 'none';
 }, 2500);
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('collapsed');
+}
+
