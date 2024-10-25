@@ -25,84 +25,111 @@
         .word {
             position: absolute;
             font-size: 4rem;
-            color:rgb(225, 243, 235);
+            color: rgb(225, 243, 235);
             font-family: 'CustomFont';
             font-weight: bold;
             opacity: 0;
         }
 
-        .duties-button {
+        .button-container {
             position: absolute;
             top: 70%;
             left: 50%;
             transform: translateX(-50%);
-            padding: 10px 20px;
-            font-size: 1.2rem;
-            background-color: #9c0000;
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px;
+            justify-content: center;
+            width: 90%;
+        }
+
+        .button-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .button-container::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        .event-button {
+            position: relative;
+            min-width: 140px;
+            padding: 15px 25px;
+            font-size: 1.4rem;
+            background-color: rgba(156, 0, 0, 0.7); /* Semi-transparent background */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
             font-family: sans-serif;
-        }
-        .duties-button:hover {
-            background-color: #fc0a0a;
+            flex-shrink: 0;
         }
 
-        /* For "Section" */
+        .event-button.locked {
+            pointer-events: none; /* Disable clicking for locked buttons */
+            opacity: 0.7; /* Make the locked buttons look different */
+        }
+
+        .lock-icon {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+        }
+
+        .event-button:hover:not(.locked) {
+            background-color: rgba(252, 10, 10, 0.7); /* Slightly lighter on hover */
+            transform: scale(1.05);
+        }
+
         .section {
             left: -200px;
             animation: slideInLeft 2s forwards, bounceLeft 0.5s 2s forwards;
             animation-fill-mode: forwards;
         }
 
-        /* For "War" */
         .war {
             right: -200px;
             animation: slideInRight 2s forwards, bounceRight 0.5s 2s forwards;
             animation-fill-mode: forwards;
         }
 
-        /* Thunderbolt image */
         .thunderbolt {
             position: absolute;
             top: 10%;
             left: 50%;
             transform: translate(-50%, -50%);
             opacity: 0;
-            width: 100px; /* Adjust size as needed */
+            width: 100px; 
             animation: fadeOutThunderbolt 0.5s 2.5s forwards;
-        }
-
-        @keyframes showThunderbolt {
-            to {
-                opacity: 1;
-            }
         }
 
         @keyframes fadeOutThunderbolt {
             to {
-                opacity: 0.5; /* Reduce opacity to make it a background */
-                transform: scale(5); /* Scale up to cover the background */
+                opacity: 0.5; 
+                transform: scale(5);
             }
         }
 
-        /* Bounce animation for "Section" to bounce slightly to the left */
         @keyframes bounceLeft {
             0% { left: 47%; transform: translateX(-100%); }
             50% { left: 42%; transform: translateX(-90%); }
             100% { left: 47%; transform: translateX(-100%); }
         }
 
-        /* Bounce animation for "War" to bounce slightly to the right */
         @keyframes bounceRight {
             0% { right: 47%; transform: translateX(100%); }
             50% { right: 42%; transform: translateX(90%); }
             100% { right: 47%; transform: translateX(100%); }
         }
 
-        /* Sliding in from the left (for "Section") */
         @keyframes slideInLeft {
             to {
                 left: 47%;
@@ -111,7 +138,6 @@
             }
         }
 
-        /* Sliding in from the right (for "War") */
         @keyframes slideInRight {
             to {
                 right: 47%;
@@ -120,7 +146,6 @@
             }
         }
 
-        /* Final text "Section Wars" fades in and stays centered */
         .collide {
             opacity: 0;
             position: absolute;
@@ -146,13 +171,9 @@
             .collide {
                 font-size: 3rem;
             }
-            .duties-button {
-                font-size: 1rem;
-                padding: 8px 16px;
-            }
-            .duties-button {
-                font-size: 0.9rem;
-                padding: 6px 12px;
+            .event-button {
+                font-size: 1.2rem;
+                padding: 12px 20px;
             }
         }
 
@@ -163,31 +184,57 @@
             .collide {
                 font-size: 2.5rem;
             }
+            .event-button {
+                font-size: 1rem;
+                padding: 10px 16px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Word elements -->
     <div class="word section">Section</div>
     <div class="word war">War</div>
-    <!-- Thunderbolt image (ensure the file is in the same directory or provide a correct path) -->
     <img src="Gun.png" alt="Thunderbolt" class="thunderbolt">
     <div class="word collide">Section Wars</div>
-    <a href="duties.html" class="duties-button">Go to Duties</a>
+
+    <!-- Scrollable button container -->
+    <div class="button-container">
+        <a href="duties.html" class="event-button">Go to Duties</a>
+        <a href="event2.html" class="event-button locked">
+            <img src="lock.png" alt="Locked" class="lock-icon">
+            Event 2
+        </a>
+        <a href="event3.html" class="event-button locked">
+            <img src="lock.png" alt="Locked" class="lock-icon">
+            Event 3
+        </a>
+        <a href="event4.html" class="event-button locked">
+            <img src="lock.png" alt="Locked" class="lock-icon">
+            Event 4
+        </a>
+        <a href="event5.html" class="event-button locked">
+            <img src="lock.png" alt="Locked" class="lock-icon">
+            Event 5
+        </a>
+        <a href="event6.html" class="event-button locked">
+            <img src="lock.png" alt="Locked" class="lock-icon">
+            Event 6
+        </a>
+    </div>
 
     <script>
-        // Force animation to restart on page reload by removing and re-adding the class
         window.onload = function() {
             const section = document.querySelector('.section');
             const war = document.querySelector('.war');
             const collide = document.querySelector('.collide');
             const thunderbolt = document.querySelector('.thunderbolt');
+            const buttonContainer = document.querySelector('.button-container');
 
-            // Re-trigger animations
             section.style.display = 'none';
             war.style.display = 'none';
             collide.style.display = 'none';
             thunderbolt.style.display = 'none';
+            buttonContainer.style.display = 'none';
 
             setTimeout(() => {
                 section.style.display = '';
@@ -195,9 +242,13 @@
                 collide.style.display = '';
                 thunderbolt.style.display = '';
             }, 50);
+
+            // Show the buttons after all animations (3 seconds delay)
+            setTimeout(() => {
+                buttonContainer.style.display = 'flex';
+            }, 3000);
         };
 
-        // Hide "Section" and "War" after 2.5 seconds
         setTimeout(() => {
             document.querySelector('.section').style.display = 'none';
             document.querySelector('.war').style.display = 'none';
